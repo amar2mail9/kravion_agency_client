@@ -1,0 +1,157 @@
+"use client";
+import { menuList } from "@/Data/changableData";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useState } from "react";
+import { TiThMenu } from "react-icons/ti";
+import { IoClose, IoSearchOutline } from "react-icons/io5";
+const Header = () => {
+  const loactionMatch = usePathname();
+  const [openToggle, setOpenToggle] = useState(false);
+
+  return (
+    <>
+      <nav className="w-full h-[80px] flex items-center px-[10px] md:px-[7%] z-50  justify-between ">
+        {/* logo section */}
+        <div className="md:w-[150px] w-14">
+          <img
+            src="./l-logo.jpg"
+            alt="kraviona"
+            loading="lazy"
+            className="w-full object-center md:block hidden "
+          />
+          <img
+            src="./fevicon.png"
+            alt="kraviona"
+            loading="lazy"
+            className="w-full object-center md:hidden block "
+          />
+        </div>
+
+        {/* menu list */}
+
+        <section className="flex gap-8 items-center">
+          <div className="md:flex hidden  text-sm font-semibold  md:gap-8 items-center">
+            {menuList.map((menu, idx) => {
+              const isactive = loactionMatch === menu.link;
+              return (
+                <Link
+                  href={menu.link}
+                  key={idx}
+                  className={`${
+                    isactive ? "text-sky-700" : "text-gray-700 capitalize"
+                  } ${
+                    menu.button
+                      ? "bg-blue-700 px-8 py-2 text-white rounded-full"
+                      : null
+                  }`}
+                >
+                  {menu.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          <button className="md:block hidden bg-blue-700 px-8 py-2 text-white rounded-full">
+            Login
+          </button>
+
+          <section className="flex  gap-4">
+            {/* search  */}
+            <button className="w-[22px] h-[22px]">
+              <IoSearchOutline className="w-full h-full" />
+            </button>
+
+            {/* login */}
+
+            {/* togglem */}
+            <button
+              onClick={() => {
+                setOpenToggle(!openToggle);
+              }}
+              className="w-[25px] h-[25px] md:hidden block"
+            >
+              <TiThMenu className="w-full h-full text-gray-500" />
+            </button>
+          </section>
+        </section>
+
+        {/* icons */}
+      </nav>
+
+      {/* small screen menu */}
+
+      {openToggle && (
+        <section className="md:hidden block z-50">
+          <div className="fixed bg-transparent w-full h-screen top-0 z-50 animate-slideIn">
+            <div className="w-full h-full flex items-center ">
+              <div className="w-[70%] h-full bg-white slideIn ">
+                {/* logo */}
+                <div className="w-full p-4">
+                  <img
+                    src="/l-logo.jpg"
+                    alt="kraviona"
+                    className="w-[90%] mx-auto"
+                  />
+                </div>
+                {/* divder */}
+                <div className="w-full  bg-gray-400 h-[1px] rounded-full" />
+
+                <div className="w-full ">
+                  <div className="flex flex-col gap-3 mt-4">
+                    {menuList.map((menu, idx) => {
+                      const isactive = loactionMatch === menu.link;
+                      return (
+                        <Link
+                          href={menu.link}
+                          key={idx}
+                          className={`  w-full px-4  py-2 hover:bg-gray-500 ${
+                            isactive ? " bg-sky-50 " : null
+                          }`}
+                        >
+                          {menu.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div
+                className="w-[30%] relative h-full bg-gray-700/91"
+                onClick={() => {
+                  setOpenToggle(false);
+                }}
+              >
+                {/* Close Overlay */}
+                <div
+                  onClick={() => setOpenToggle(false)}
+                  className="flex-1 relative"
+                >
+                  <IoClose className="absolute top-4 right-4 text-rose-400 text-3xl cursor-pointer" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        .animate-slideIn {
+          animation: slideIn 0.3s ease forwards;
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default Header;
