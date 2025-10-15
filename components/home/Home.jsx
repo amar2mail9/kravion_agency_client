@@ -1,20 +1,14 @@
-"use client";
-
 import React from "react";
-
-import OurProject from "./OurProject";
 import Banner from "./Banner";
 import Techstack from "./Techstack";
 
-const Landing = () => {
+const Home = () => {
   return (
-    <>
-      {/* banner */}
+    <div>
       <Banner />
-      {/* tech Stack */}
       <Techstack />
-    </>
+    </div>
   );
 };
 
-export default Landing;
+export default Home;

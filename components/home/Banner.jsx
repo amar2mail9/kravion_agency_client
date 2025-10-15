@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -38,6 +39,7 @@ const Banner = () => {
         transition={{ duration: 1 }}
       >
         <img
+        loading="lazy"
           src="/hero.png"
           alt="Web Development"
           className="w-full h-full max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
@@ -47,6 +49,7 @@ const Banner = () => {
       {/* ===== SVG Wave Behind ===== */}
       <div className="absolute bottom-0 left-0 w-full md:block hidden">
         <svg
+
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
           className="w-full h-auto"
