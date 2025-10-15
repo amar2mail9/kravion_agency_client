@@ -1,16 +1,18 @@
 "use client";
 
 import React from "react";
-import { Banner } from "./Banner";
+
 import OurProject from "./OurProject";
+import Banner from "./Banner";
+import Techstack from "./Techstack";
 
 const Landing = () => {
   return (
     <>
       {/* banner */}
       <Banner />
-      {/* our Project */}
-      <OurProject />
+      {/* tech Stack */}
+      <Techstack />
     </>
   );
 };

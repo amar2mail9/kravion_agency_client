@@ -1,51 +1,65 @@
 import React from "react";
-import { MdArrowOutward } from "react-icons/md";
+import { motion } from "framer-motion";
 
-export const Banner = () => {
+const Banner = () => {
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden text-gray-950">
-      {/* Content Layer */}
-      <div className="absolute inset-0 flex flex-col-reverse  md:flex-row items-center justify-between px-6 md:px-20 py-12 -z-2">
-        {/* Left content */}
-        <div className="w-full md:w-1/2 text-center md:text-left">
-          <h2 className="text-sky-700 animate-pulse text-4xl sm:text-6xl font-semibold capitalize leading-tight">
-            Ready for any web <br /> projects
-          </h2>
-
-          <p className="mt-6 text-gray-700 max-w-md mx-auto md:mx-0">
-            We’re a design studio that creates beautiful digital products,
-            brands and experiences for amazing companies and disruptive
-            startups.
-          </p>
-
-          <button className="mt-8 animate-bounce bg-sky-600 flex gap-2 items-center justify-center md:justify-start text-white px-8 py-3 rounded-full hover:bg-sky-700 transition-all duration-300">
-            Get Started <MdArrowOutward />
-          </button>
-        </div>
-
-        {/* Right content (image) */}
-        <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
-          <img
-            src="/hero-img.svg"
-            alt="Hero Illustration"
-            className="w-[85%] md:w-[100%] animate-pulse h-auto object-contain"
-          />
-        </div>
-      </div>
-
-      {/* SVG wave background with reduced height */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        className="relative -z-10"
+    <section className="w-full min-h-[80vh] flex flex-col md:flex-row items-center bg-white relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
+      {/* ===== Left Content ===== */}
+      <motion.div
+        className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-6 mt-12 md:mt-0 z-10"
+        initial={{ x: -80, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
       >
-        {" "}
-        <path
-          fill="#ffffff"
-          fillOpacity="1"
-          d="M0,96L34.3,122.7C68.6,149,137,203,206,218.7C274.3,235,343,213,411,181.3C480,149,549,107,617,90.7C685.7,75,754,85,823,112C891.4,139,960,181,1029,186.7C1097.1,192,1166,160,1234,170.7C1302.9,181,1371,235,1406,261.3L1440,288L1440,0L0,0Z"
-        ></path>{" "}
-      </svg>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+          We Build <span className="text-[#00cba9]">Creative</span>
+          <br />
+          Web Solutions
+        </h1>
+        <p className="text-gray-600 text-lg max-w-md">
+          Empowering brands with cutting-edge web applications, designed to
+          deliver performance, aesthetics, and scalability.
+        </p>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-emerald-500 w-fit hover:bg-[#1aaf94] text-white px-7 py-3 rounded-full font-semibold shadow-md transition-all"
+        >
+          Get Started
+        </motion.button>
+      </motion.div>
+
+      {/* ===== Right Image Section ===== */}
+      <motion.div
+        className="flex-1 flex justify-center items-center mt-10 md:mt-0 z-10"
+        initial={{ x: 80, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <img
+          src="/hero.png"
+          alt="Web Development"
+          className="w-full h-full max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
+        />
+      </motion.div>
+
+      {/* ===== SVG Wave Behind ===== */}
+      <div className="absolute bottom-0 left-0 w-full md:block hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="w-full h-auto"
+        >
+          <path
+            fill="#00cba9"
+            fillOpacity="1"
+            d="M0,64L34.3,90.7C68.6,117,137,171,206,192C274.3,213,343,203,411,186.7C480,171,549,149,617,128C685.7,107,754,85,823,101.3C891.4,117,960,171,1029,176C1097.1,181,1166,139,1234,106.7C1302.9,75,1371,53,1406,42.7L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
     </section>
   );
 };
+
+export default Banner;

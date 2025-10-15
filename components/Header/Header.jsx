@@ -11,11 +11,11 @@ const Header = () => {
 
   return (
     <>
-      <nav className="w-full h-[80px] flex items-center px-[10px] md:px-[7%] z-50  justify-between ">
+      <nav className="w-full h-[80px] flex items-center px-[10px] md:px-[7%] z-50  shadow justify-between ">
         {/* logo section */}
-        <div className="md:w-[150px] w-14">
+        <div className="md:w-[180px] w-14">
           <img
-            src="./l-logo.jpg"
+            src="./l-logo.png"
             alt="kraviona"
             loading="lazy"
             className="w-full object-center md:block hidden "
@@ -39,12 +39,8 @@ const Header = () => {
                   href={menu.link}
                   key={idx}
                   className={`${
-                    isactive ? "text-sky-700" : "text-gray-700 capitalize"
-                  } ${
-                    menu.button
-                      ? "bg-blue-700 px-8 py-2 text-white rounded-full"
-                      : null
-                  }`}
+                    isactive ? "text-emerald-500" : "text-gray-700 capitalize"
+                  } `}
                 >
                   {menu.name}
                 </Link>
@@ -52,7 +48,7 @@ const Header = () => {
             })}
           </div>
 
-          <button className="md:block hidden bg-blue-700 px-8 py-2 text-white rounded-full">
+          <button className="md:block hidden bg-[#00cba9] px-8 py-2 text-white rounded-full">
             Login
           </button>
 
