@@ -1,12 +1,15 @@
-"use client"
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <section className="w-full min-h-[80vh] flex flex-col md:flex-row items-center bg-white relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
+    <section className="w-full min-h-[88vh] flex flex-col md:flex-row items-center bg-white relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
       {/* ===== Left Content ===== */}
       <motion.div
+        viewport={{
+          once: false,
+        }}
         className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-6 mt-12 md:mt-0 z-10"
         initial={{ x: -80, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -39,7 +42,7 @@ const Banner = () => {
         transition={{ duration: 1 }}
       >
         <img
-        loading="lazy"
+          loading="lazy"
           src="/hero.png"
           alt="Web Development"
           className="w-full h-full max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
@@ -49,7 +52,6 @@ const Banner = () => {
       {/* ===== SVG Wave Behind ===== */}
       <div className="absolute bottom-0 left-0 w-full md:block hidden">
         <svg
-
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
           className="w-full h-auto"

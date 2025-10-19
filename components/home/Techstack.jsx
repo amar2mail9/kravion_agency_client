@@ -26,30 +26,40 @@ const Techstack = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center gap-8 py-16 px-[8%] overflow-hidden">
-      <h1 className="text-3xl text-center text-[#00cba9] font-semibold">
+    <div className="w-full flex flex-col bg-gray-100 items-center gap-8 py-16 px-6 overflow-hidden">
+      <motion.h1
+        initial={{ y: -80, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+        className="text-3xl text-center text-[#00cba9] font-semibold"
+      >
         Technologies Used for Development
-      </h1>
+      </motion.h1>
 
       {/* Running Tech Stack */}
-      <motion.div
-        className="flex gap-6"
-        animate={{ x: ["0%", "-20%"] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-      >
-        {[...Technology, ...Technology].map(({ name, icon, color }, idx) => (
-          <motion.div
-            key={idx}
-            whileHover={{ scale: 1.2 }}
-            className="w-24 h-24 flex items-center justify-center flex-col bg-white rounded-lg shadow-md"
-          >
-            <span style={{ color }} className="text-3xl">
-              {icon}
-            </span>
-            <span className="mt-2 text-sm font-medium">{name}</span>
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="w-full overflow-hidden py-2">
+        <motion.div
+          className="flex gap-6 w-fit"
+          animate={{ x: ["0%", "-20%"] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        >
+          {[...Technology, ...Technology].map(({ name, icon, color }, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.2 }}
+              className="w-20 sm:w-24 h-20 sm:h-24 flex flex-col items-center justify-center bg-white rounded-lg shadow-md"
+            >
+              <span style={{ color }} className="text-2xl sm:text-3xl">
+                {icon}
+              </span>
+              <span className="mt-1 sm:mt-2 text-xs sm:text-sm font-medium text-gray-500 text-center">
+                {name}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const menuList = [
     
     {
         name:"Contact",
-        link:"/",
+        link:"/contact-us",
         button:false
     },
     
@@ -26,3 +26,4 @@ export const menuList = [
     
 
 ]
+
