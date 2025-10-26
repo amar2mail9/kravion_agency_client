@@ -3,39 +3,36 @@ import { motion } from "framer-motion";
 
 const ContactBanner = () => {
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-gray-900 via-[#002b26] to-black flex items-center justify-center overflow-hidden px-6">
-      {/* Animated background circles */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#00cba9]/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute top-1/3 right-10 w-80 h-80 bg-[#00cba9]/10 rounded-full blur-2xl animate-pulse"></div>
-      <div className="absolute bottom-10 left-1/4 w-72 h-72 bg-[#00cba9]/15 rounded-full blur-2xl animate-pulse"></div>
+    <section>
+      <div className="w-full h-[500px] relative">
+        {/* Background Image */}
+        <img
+          src="/contact.jpg"
+          alt="Contact Us"
+          className="w-full h-full object-cover blur-sm"
+        />
 
-      {/* Main Content */}
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="relative z-10 max-w-4xl text-center"
-      >
-        <h1 className="text-5xl md:text-6xl font-extrabold text-[#00cba9] mb-6">
-          Let’s Build Something Amazing Together
-        </h1>
-        <p className="text-gray-300 text-lg md:text-xl mb-10">
-          Have a project in mind or just want to say hello? Reach out to us —
-          we’d love to collaborate and make ideas come alive.
-        </p>
-
-        {/* Call-to-Action Button
-        <motion.a
-          href="#contact-form"
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px #00cba9" }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="inline-block bg-gradient-to-r from-[#00cba9] to-[#007f73] text-white font-semibold py-3 px-10 rounded-full shadow-lg hover:shadow-[#00cba9]/50 transition-all"
-        >
-          Contact Us
-        </motion.a> */}
-      </motion.div>
+        {/* Gradient Overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#00cba9]/40 via-gray-900/70 to-black/90">
+          <div className="w-full h-full flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="max-w-3xl mx-auto text-center px-4"
+            >
+              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-[#00cba9]">
+                Contact Us
+              </h1>
+              <p className="text-gray-300 text-lg md:text-xl mb-10">
+                Have a project in mind or just want to say hello? Reach out to
+                us — we’d love to collaborate and make your ideas come alive.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

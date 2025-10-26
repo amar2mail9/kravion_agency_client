@@ -1,16 +1,16 @@
+"use client";
 
-"use client"
 import React from "react";
-import Banner from "./Banner";
-import Techstack from "./Techstack";
+import Banner from "./Banner.jsx";
+import Techstack from "./Techstack.jsx";
+import Projects from "../Projects/Projects.jsx";
 
-const Home = () => {
+export const HomeComponent = () => {
   return (
-    <div>
+    <>
       <Banner />
       <Techstack />
-    </div>
+      <Projects />
+    </>
   );
 };
-
-export default Home;

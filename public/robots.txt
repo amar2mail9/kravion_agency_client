@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kraviona.vercel.app
+
+# Sitemaps
+Sitemap: https://kraviona.vercel.app/sitemap.xml
