@@ -38,7 +38,11 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  // verification:{
+  //   google:"google51e1c8860d160926.html"
+  // }
 };
+
 
 export default function RootLayout({ children }) {
   return (

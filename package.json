@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "postbuild": "next-sitemap"
+    "build": "next build",
+    "start": "next start",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "motion": "^12.23.24",
