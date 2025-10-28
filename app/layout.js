@@ -46,42 +46,41 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-     <head>
-  {/* 🧠 Fonts */}
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossOrigin="true"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+      <head>
+        {/* 🧠 Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
 
-  {/* ✅ Google Search Console Verification */}
-  <meta
-    name="google-site-verification"
-    content="google51e1c8860d160926.html"
-  />
+        {/* ✅ Google Search Console Verification */}
+        <meta
+          name="google-site-verification"
+          content="google51e1c8860d160926.html"
+        />
 
-  {/* ✅ Google Analytics */}
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-DEFBF0GEK7 "
-  ></script>
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `
+        {/* ✅ Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WE5ND4DWEH"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-DEFBF0GEK7 ');
+        gtag('config', 'G-WE5ND4DWEH');
       `,
-    }}
-  />
-</head>
-
+          }}
+        />
+      </head>
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased !bg-green-50`}
