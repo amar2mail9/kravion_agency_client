@@ -1,5 +1,5 @@
-import Contact from "@/components/Contact/Contact"
-import React from "react"
+import Contact from "@/components/Contact/Contact";
+import React from "react";
 
 export const metadata = {
   title: "Contact Us - Kraviona",
@@ -18,9 +18,8 @@ export const metadata = {
   },
 };
 
+const contact = () => {
+  return <Contact />;
+};
 
-const contact= ()=>{
-    return <Contact/>
-}
-
-export default contact
+export default contact;

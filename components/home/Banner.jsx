@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <section className="w-full min-h-[88vh] flex flex-col md:flex-row items-center bg-white relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
+    <section className="w-full min-h-[88vh] flex flex-col md:flex-row items-center bg-gray-900 relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
       {/* ===== Left Content ===== */}
       <motion.div
         viewport={{
@@ -15,7 +15,7 @@ const Banner = () => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
           We Build <span className="text-[#00cba9]">Creative</span>
           <br />
           Web Solutions
@@ -45,7 +45,7 @@ const Banner = () => {
           loading="lazy"
           src="/hero.png"
           alt="Web Development"
-          className="w-full h-full max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
+          className="w-full h-full max-w-md hidden md:block md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
         />
       </motion.div>
 

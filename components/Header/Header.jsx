@@ -30,13 +30,13 @@ const Header = () => {
           {/* logo section */}
           <div className="md:w-[180px] w-14">
             <img
-              src="./l-logo.png"
+              src="/l-logo.png"
               alt="kraviona"
               loading="lazy"
               className="w-full object-center md:block hidden"
             />
             <img
-              src="./fevicon.png"
+              src="/favicon.ico"
               alt="kraviona"
               loading="lazy"
               className="w-full object-center md:hidden block"

@@ -1,5 +1,5 @@
+import React from "react";
 import { projects } from "@/Data/changableData";
-import React, { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
