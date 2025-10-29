@@ -13,8 +13,7 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    {
-      url: 'https://kraviona.vercel.app/contact-us',
+jhjhh      url: 'https://kraviona.vercel.app/contact-us',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
