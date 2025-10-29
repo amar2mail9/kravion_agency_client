@@ -4,53 +4,41 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <section className="w-full min-h-[88vh] flex flex-col md:flex-row items-center bg-gray-900 relative overflow-hidden px-[8%] -z-10 md:pb-0 pb-16">
-      {/* ===== Left Content ===== */}
+    <section className="relative flex flex-col items-center justify-center min-h-[85vh] bg-gradient-to-br from-gray-900 via-[#001f1d] to-black text-center overflow-hidden px-6">
+      {/* ===== Animated Background Lights ===== */}
       <motion.div
-        viewport={{
-          once: false,
-        }}
-        className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-6 mt-12 md:mt-0 z-10"
-        initial={{ x: -80, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
+        animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.2, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 left-10 w-[400px] h-[400px] bg-[#00cba9]/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ opacity: [0.4, 0.8, 0.4], scale: [1.1, 0.9, 1.1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-[#007f73]/20 rounded-full blur-3xl"
+      />
+
+      {/* ===== Text Content ===== */}
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="z-10 max-w-3xl mx-auto"
       >
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
-          We Build <span className="text-[#00cba9]">Creative</span>
-          <br />
-          Web Solutions
+        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-100 leading-tight mb-6">
+          Transforming Ideas Into{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00cba9] to-[#007f73]">
+            Digital Reality
+          </span>
         </h1>
-        <p className="text-gray-600 text-lg max-w-md">
-          Empowering brands with cutting-edge web applications, designed to
-          deliver performance, aesthetics, and scalability.
+        <p className="text-white text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          We craft scalable, high-performance web solutions that empower your
+          business and inspire your audience — built with precision, passion,
+          and purpose.
         </p>
-
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-emerald-500 w-fit hover:bg-[#1aaf94] text-white px-7 py-3 rounded-full font-semibold shadow-md transition-all"
-        >
-          Get Started
-        </motion.button>
       </motion.div>
 
-      {/* ===== Right Image Section ===== */}
-      <motion.div
-        className="flex-1 flex justify-center items-center mt-10 md:mt-0 z-10"
-        initial={{ x: 80, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <img
-          loading="lazy"
-          src="/hero.png"
-          alt="Web Development"
-          className="w-full h-full max-w-md hidden md:block md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl"
-        />
-      </motion.div>
-
-      {/* ===== SVG Wave Behind ===== */}
-      <div className="absolute bottom-0 left-0 w-full md:block hidden">
+      {/* ===== Decorative Wave ===== */}
+      <div className="absolute bottom-0 left-0 w-full hidden md:block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
@@ -59,7 +47,7 @@ const Banner = () => {
           <path
             fill="#00cba9"
             fillOpacity="1"
-            d="M0,64L34.3,90.7C68.6,117,137,171,206,192C274.3,213,343,203,411,186.7C480,171,549,149,617,128C685.7,107,754,85,823,101.3C891.4,117,960,171,1029,176C1097.1,181,1166,139,1234,106.7C1302.9,75,1371,53,1406,42.7L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
+            d="M0,160L48,154.7C96,149,192,139,288,149.3C384,160,480,192,576,186.7C672,181,768,139,864,133.3C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
         </svg>
       </div>
