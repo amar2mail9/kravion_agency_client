@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
         {/* ✅ Google Search Console Verification */}
         <meta
           name="google-site-verification"
-          content="google51e1c8860d160926.html"
+          content="google9af3b71ade4d3403.html"
         />
 
         {/* ✅ Google Analytics */}
