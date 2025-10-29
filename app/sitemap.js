@@ -1,23 +1,22 @@
+// app/sitemap.js
 export default function sitemap() {
-  const baseUrl = "https://kraviona.vercel.app";
-
   return [
     {
-      url: `${baseUrl}/`,
+      url: 'https://kraviona.vercel.app/',
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
+      changeFrequency: 'weekly',
+      priority: 1,
     },
     {
-      url: `${baseUrl}/about-us`,
+      url: 'https://kraviona.vercel.app/about-us',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact-us`,
+      url: 'https://kraviona.vercel.app/contact-us',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
   ];
