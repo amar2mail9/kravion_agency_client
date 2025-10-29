@@ -14,7 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 🌐 Global SEO Metadata
 export const metadata = {
   metadataBase: new URL("https://kraviona.vercel.app"),
   title: "Kraviona - Professional Website Developer",
@@ -30,7 +29,7 @@ export const metadata = {
     siteName: "Kraviona",
     images: [
       {
-        url: "/og-image.png",
+        url: "/l-logo.png",
         width: 800,
         height: 600,
         alt: "Kraviona Website",
@@ -39,9 +38,6 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-  // verification:{
-  //   google:"google51e1c8860d160926.html"
-  // }
 };
 
 export default function RootLayout({ children }) {
@@ -60,36 +56,26 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
 
-        {/* ✅ Google Search Console Verification */}
-        <meta
-          name="google-site-verification"
-          content="google9af3b71ade4d3403.html"
-        />
+        {/* ✅ Canonical & Robots for SEO */}
+        <link rel="canonical" href="https://kraviona.vercel.app/" />
+        <meta name="robots" content="index, follow" />
 
-        {/* google analylicts add herer */}
+        {/* ✅ Google Search Console Verification */}
+        <meta name="google-site-verification" content="9af3b71ade4d3403" />
+
+        {/* ✅ Google Analytics (only once) */}
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
-        />
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
-    `,
-          }}
-        />
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-${process.env.GOOGLE_ANALYTICS_ID}');
-      `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
+            `,
           }}
         />
       </head>
@@ -97,8 +83,6 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased !bg-green-50`}
       >
-        {/* 🌐 SEO Defaults */}
-
         <Layout>
           {children}
           <SpeedInsights />
