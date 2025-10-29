@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
           content="google9af3b71ade4d3403.html"
         />
 
-        {/* ✅ Google Analytics */}
+        {/* google analylicts add herer */}
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
