@@ -27,7 +27,7 @@ const Header = () => {
       <header className="w-full sticky top-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-md">
         <nav className="w-full h-[80px] flex items-center px-[10px] md:px-[7%] justify-between">
           {/* Logo Section */}
-          <div className="md:w-[180px] w-14">
+          <div className="md:w-[190px] w-16">
             <div className="flex items-center gap-3">
               <img
                 src="/favicon.ico"
@@ -37,18 +37,13 @@ const Header = () => {
               />
               <div className="flex flex-col leading-tight">
                 <p className="text-white text-lg font-semibold">Kraviona</p>
-                <small className="text-gray-400 text-xs">
+                <small className="text-gray-400 md:text-xs text-[10px]">
                   IT Web Solutions
                 </small>
               </div>
             </div>
 
-            <img
-              src="/favicon.ico"
-              alt="Kraviona"
-              loading="lazy"
-              className="w-full object-center md:hidden block"
-            />
+            
           </div>
 
           {/* Menu List */}

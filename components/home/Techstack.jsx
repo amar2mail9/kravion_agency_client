@@ -31,7 +31,7 @@ const Techstack = () => {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-20 bg-[#050a14]">
+    <div className="relative w-full flex scroll-smooth flex-col items-center justify-center overflow-hidden py-20 bg-[#050a14]">
       {/* Gradient background with subtle glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#00111f] via-[#001c2b] to-[#000000] opacity-95"></div>
       <div className="absolute w-[600px] h-[600px] bg-[#00cba9]/25 blur-[180px] rounded-full -top-40 -left-40"></div>
