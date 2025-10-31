@@ -1,11 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
 
-export default nextConfig;
-
-// next.config.js
-export default {
-  async headers() {
+ async headers() {
     return [
       {
         source: '/sitemap.xml',
@@ -16,4 +12,8 @@ export default {
       },
     ];
   },
+
 };
+
+export default nextConfig;
+
