@@ -3,6 +3,7 @@ import "./globals.css";
 import Layout from "@/components/Layout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +21,7 @@ export const metadata = {
   description:
     "Kraviona builds high-quality websites and web applications using modern technologies like Next.js, React, and Node.js.",
   keywords:
-    "web developer, kraviona, next.js developer, website development, react developer, MERN stack",
+    "web developer, kraviona, next.js developer, website development, react developer, MERN stack, kravion, website, delhi, JS , /",
   openGraph: {
     title: "Kraviona - Professional Website Developer",
     description:
@@ -29,7 +30,7 @@ export const metadata = {
     siteName: "Kraviona",
     images: [
       {
-        url: "/l-logo.png",
+        url: "/favicon.ico",
         width: 800,
         height: 600,
         alt: "Kraviona Website",
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
           {children}
           <SpeedInsights />
           <Analytics />
+          <ToastContainer />
         </Layout>
       </body>
     </html>
