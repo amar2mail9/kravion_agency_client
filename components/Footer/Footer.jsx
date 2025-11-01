@@ -3,10 +3,22 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const locationMatch = usePathname();
 
+  const blockFooter = [
+    "/sign-up",
+    "/login",
+    "/sign-up/verify",
+    "/login/verify",
+  ];
+
+  if (blockFooter.includes(locationMatch)) {
+    return null;
+  }
   return (
     <footer className="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8">

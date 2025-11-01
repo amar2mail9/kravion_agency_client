@@ -1,25 +1,58 @@
 "use client";
 import { menuList } from "@/Data/changableData";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { IoClose } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 const Header = () => {
   const locationMatch = usePathname();
+  const router = useRouter();
+
   const [openToggle, setOpenToggle] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const pathname = usePathname();
+  // Load user data
+  useEffect(() => {
+    const token = Cookies.get("token");
+    const userData = localStorage.getItem("user");
 
-  const blockHeader = [
-    "/sign-up",
-    "/login",
-    "/sign-up/verify",
-    "/login/verify",
-  ];
 
-  if (blockHeader.includes(locationMatch)) {
-    return null;
-  }
+    try {
+      if (userData) setUser(JSON.parse(userData));
+      setIsLoggedIn(!!token && !!userData);
+    } catch (err) {
+      console.error("Invalid user data:", err);
+      localStorage.removeItem("user");
+      setIsLoggedIn(false);
+    }
+  }, [pathname])
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".user-dropdown")) setShowDropdown(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  // Logout handler
+  const handleLogout = () => {
+    Cookies.remove("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setUser(null);
+    router.push("/login");
+  };
+
+  // Hide header on auth pages
+  const blockHeader = ["/sign-up", "/login", "/sign-up/verify", "/login/verify"];
+  if (blockHeader.includes(locationMatch)) return null;
 
   return (
     <>
@@ -42,8 +75,6 @@ const Header = () => {
                 </small>
               </div>
             </div>
-
-            
           </div>
 
           {/* Menu List */}
@@ -55,11 +86,10 @@ const Header = () => {
                   <Link
                     href={menu.link}
                     key={idx}
-                    className={`${
-                      isActive
-                        ? "text-[#00cba9]"
-                        : "text-gray-300 hover:text-[#00cba9] transition-colors"
-                    } capitalize`}
+                    className={`${isActive
+                      ? "text-[#00cba9]"
+                      : "text-gray-300 hover:text-[#00cba9] transition-colors"
+                      } capitalize`}
                   >
                     {menu.name}
                   </Link>
@@ -67,10 +97,56 @@ const Header = () => {
               })}
             </div>
 
-            {/* Login Button */}
-            <button className="md:block hidden bg-[#00cba9] hover:bg-[#009e8b] px-8 py-2 text-white rounded-full font-semibold transition-all">
-              Login
-            </button>
+            {/* ✅ User / Login Section */}
+            {isLoggedIn ? (
+              <div className="relative user-dropdown">
+                <FaUser
+                  className="text-[#00cba9] text-xl cursor-pointer"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                />
+
+                {showDropdown && (
+                  <div className="absolute top-12 right-4 w-56 rounded-xl bg-gray-900 text-white shadow-lg border border-gray-700">
+                    <div className="px-4 py-3 border-b border-gray-700">
+                      <p className="text-sm font-semibold">
+                        {user?.fullname || "Unknown"}
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        {user?.email || "Not provided"}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col py-2">
+                      <Link
+                        href="/my-account"
+                        className="px-4 py-2 text-sm hover:bg-gray-800 transition rounded-lg"
+                      >
+                        My Account
+                      </Link>
+                      <Link
+                        href="/settings"
+                        className="px-4 py-2 text-sm hover:bg-gray-800 transition rounded-lg"
+                      >
+                        Settings
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-800 hover:text-red-300 transition rounded-lg"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="md:block hidden bg-[#00cba9] hover:bg-[#009e8b] px-8 py-2 text-white rounded-full font-semibold transition-all"
+              >
+                Login
+              </Link>
+            )}
 
             {/* Mobile Toggle */}
             <button
@@ -91,11 +167,7 @@ const Header = () => {
               <div className="w-[70%] h-full bg-gray-900 shadow-2xl border-r border-gray-700 slideIn">
                 {/* Logo */}
                 <div className="w-full p-4 flex justify-center border-b border-gray-800">
-                  <img
-                    src="/l-logo.png"
-                    alt="Kraviona"
-                    className="w-[80%] mx-auto"
-                  />
+                  <img src="/l-logo.png" alt="Kraviona" className="w-[80%] mx-auto" />
                 </div>
 
                 {/* Menu Items */}
@@ -106,9 +178,8 @@ const Header = () => {
                       <Link
                         href={menu.link}
                         key={idx}
-                        className={`w-full px-5 py-3 hover:bg-gray-800 ${
-                          isActive ? "bg-gray-800 text-[#00cba9]" : ""
-                        } transition-all`}
+                        className={`w-full px-5 py-3 hover:bg-gray-800 ${isActive ? "bg-gray-800 text-[#00cba9]" : ""
+                          } transition-all`}
                         onClick={() => setOpenToggle(false)}
                       >
                         {menu.name}

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { User, Mail, Lock, Phone, ShieldCheck } from "lucide-react";
 import { toast } from "react-toastify";
 import { Spinner } from "@/components/Spinner";
+import { useRouter } from "next/navigation"
+import Cookies from "js-cookie";
 
 export const SignUpForm = () => {
     const [otpForm, setOtpForm] = useState(false);
@@ -11,104 +13,120 @@ export const SignUpForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
-    const [otp, setOtp] = useState(null)
-    console.log();
+    const [otp, setOtp] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
 
-    // Handle Signup form submit
+    // --- Validation ---
+    const validateSignup = () => {
+        if (!fullname || !email || !username || !password || !phone) {
+            toast.error("All fields are required!");
+            return false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error("Enter a valid email address!");
+            return false;
+        }
+        if (!/^[a-zA-Z0-9_]{3,16}$/.test(username)) {
+            toast.error("Enter a valid username !");
+            return false;
+        }
+        if (phone.length < 10) {
+            toast.error("Enter a valid phone number!");
+            return false;
+        }
+        if (password.length < 6) {
+            toast.error("Password must be at least 6 characters!");
+            return false;
+        }
+        return true;
+    };
+
+    // --- Handle Signup Form Submit ---
     const submitForm = async (e) => {
         e.preventDefault();
+        if (!validateSignup()) return;
+
+        setIsLoading(true);
         try {
-            setIsLoading(true)
-            if (!password) {
-                setIsLoading(true)
-            }
-            if (!email) {
-                setIsLoading(true)
-            }
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API}/create-account`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ fullname, email, username, password, phone }),
+                }
+            );
 
-            if (!fullname) {
-                setIsLoading(true)
-            }
-
-            if (!phone) {
-                setIsLoading(true)
-            }
-
-            if (!username) {
-                setIsLoading(true)
-            }
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/create-account`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    fullname,
-                    email,
-                    username,
-                    password,
-                    phone,
-                }),
-            });
-            console.log("Data");
-            console.log(res);
-            setIsLoading(false)
             const data = await res.json();
+            setIsLoading(false);
 
-            if (res.ok) {
-                if (data.success) toast.success(data.message);
-                if (!data.success) toast.error(data.message);
+            if (res.ok && data.success) {
+                toast.success(data.message || "OTP sent successfully!");
+                console.log(data);
 
                 setOtpForm(true);
             } else {
-                toast.error(data?.message || "Signup failed");
+                toast.error(data.message || "Signup failed!");
             }
         } catch (error) {
-            toast.error(error.message);
+            setIsLoading(false);
+            toast.error(error.message || "Something went wrong!");
         }
     };
 
-    // Handle OTP verification
+    // --- Handle OTP Verification ---
     const handleOtpSubmit = async (e) => {
         e.preventDefault();
+        if (!otp || otp.length !== 6) {
+            toast.error("Please enter a valid 6-digit OTP!");
+            return;
+        }
+
+        setIsLoading(true);
         try {
-            setIsLoading(true)
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_API}/verify-otp`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ inputValue: email, otp }),
+                }
+            );
 
-
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/verify-otp`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-
-                    inputValue: email,
-                    otp
-                }),
-            });
-            console.log("Data");
-            console.log(res);
-            setIsLoading(false)
             const data = await res.json();
+            setIsLoading(false);
 
-            if (res.ok) {
-                if (data.success) toast.success(data.message);
-                if (!data.success) toast.error(data.message);
+            if (res.ok && data.success) {
+                toast.success("Account created successfully!");
+                setIsLoading(true)
+                localStorage.setItem("user", JSON.stringify(data.user))
+                Cookies.set("token", data.user.token)
+                router.push('/')
+                setIsLoading(false)
+                // Optionally redirect or reset form
+                setOtpForm(false);
+                setFullname("");
+                setEmail("");
+                setUsername("");
+                setPassword("");
+                setPhone("");
+                setOtp("");
 
-                setOtpForm(true);
+
+                router.push('/')
+
             } else {
-                toast.error(data?.message || "Signup failed");
+                toast.error(data.message || "Invalid OTP!");
             }
         } catch (error) {
-            toast.error(error.message);
+            setIsLoading(false);
+            toast.error(error.message || "Something went wrong!");
         }
     };
 
-    if (isLoading) {
-        return <Spinner />
-    }
+    if (isLoading) return <Spinner />;
 
     return (
         <div>
@@ -124,7 +142,6 @@ export const SignUpForm = () => {
                             value={fullname}
                             onChange={(e) => setFullname(e.target.value)}
                             className="w-full py-2 bg-transparent text-gray-200 placeholder-gray-500 outline-none"
-
                             autoComplete="name"
                         />
                     </div>
@@ -138,7 +155,6 @@ export const SignUpForm = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full py-2 bg-transparent text-gray-200 placeholder-gray-500 outline-none"
-
                             autoComplete="email"
                         />
                     </div>
@@ -150,9 +166,10 @@ export const SignUpForm = () => {
                             type="text"
                             placeholder="Username"
                             value={username}
+                            min={3}
+                            max={16}
                             onChange={(e) => setUsername(e.target.value)}
                             className="w-full py-2 bg-transparent text-gray-200 placeholder-gray-500 outline-none"
-
                         />
                     </div>
 
@@ -165,7 +182,6 @@ export const SignUpForm = () => {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             className="w-full py-2 bg-transparent text-gray-200 placeholder-gray-500 outline-none"
-
                         />
                     </div>
 
@@ -178,7 +194,6 @@ export const SignUpForm = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full py-2 bg-transparent text-gray-200 placeholder-gray-500 outline-none"
-                            // 
                             autoComplete="new-password"
                         />
                     </div>
@@ -199,24 +214,18 @@ export const SignUpForm = () => {
                     </div>
 
                     <p className="text-gray-400 text-center text-sm mb-6">
-                        Enter the OTP sent to your Email ID.
+                        Enter the 6-digit OTP sent to your email.
                     </p>
 
-                    <div className="flex justify-between space-x-3">
-                        <input
-                            value={otp}
-                            onChange={(e) => {
-                                setOtp(e.target.value)
-                            }}
-                            type="number"
-                            maxLength={6}
-                            className="w-full h-16 bg-transparent border-2 border-gray-700 rounded-lg text-center text-2xl text-gray-200 focus:border-emerald-400 outline-none"
-
-                        />
-                    </div>
+                    <input
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        type="number"
+                        maxLength={6}
+                        className="w-full h-16 bg-transparent border-2 border-gray-700 rounded-lg text-center text-2xl text-gray-200 focus:border-emerald-400 outline-none"
+                    />
 
                     <button
-
                         type="submit"
                         className="w-full py-3 mt-8 bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-semibold rounded-lg shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-emerald-400/40 transition"
                     >
