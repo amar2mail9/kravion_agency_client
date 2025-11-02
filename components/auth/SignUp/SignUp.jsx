@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { SignUpForm } from "./SignupForm";
+import Link from "next/link";
 
 const SignUp = () => {
   return (
@@ -41,9 +42,9 @@ const SignUp = () => {
 
           <div className="mt-16 text-md text-gray-400">
             Already have an account?
-            <a href="#" className="text-emerald-400 font-semibold hover:text-cyan-400 ml-1 transition-colors">
+            <Link href="/login" className="text-emerald-400 font-semibold hover:text-cyan-400 ml-1 transition-colors">
               Log in
-            </a>
+            </Link>
           </div>
         </motion.div>
 

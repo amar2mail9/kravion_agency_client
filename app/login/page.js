@@ -1,13 +1,12 @@
 // import SignUp from "@/components/auth/SignUp/SignUp";
-import Link from "next/link";
+import Login from "@/components/auth/Login/Login";
+
 import React from "react";
 
 const Page = () => {
     return (
         <div>
-            login page
-
-            <Link href={'sign-up'} > Sign UP</Link>
+            <Login />
         </div>
     );
 };

@@ -42,7 +42,7 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* View Details Button */}
-        <Link href={`/projects/${encodeURIComponent(project.projectName)}`}>
+        <Link href={`/projects/${project.slug}`}>
           <motion.button
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 200 }}
