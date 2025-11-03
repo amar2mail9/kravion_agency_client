@@ -37,6 +37,7 @@ export const menuList = [
 
 export const projects = [
   {
+    views: 25,
     slug: "polytechub-blog-portfolio",
     projectName: "Polytechub - Blog & Portfolio",
     domain: "Full Stack / Web Application",
@@ -93,6 +94,7 @@ export const projects = [
     ],
     tags: ["editor", "react", "frontend", "wysiwyg"],
     license: "GPL-3.0",
+    views: 20,
     contact: {
       owner: "Amar Kumar",
       email: "amar47kumar47@gmail.com"
@@ -128,6 +130,8 @@ export const projects = [
       email: "amar47kumar47@gmail.com"
     },
     notes: "Lightweight and optimized for personal blogging."
+    ,
+    views: 10
   }
 ];
 
@@ -142,7 +146,7 @@ export const blogs = [
       "Artificial Intelligence (AI) continues to reshape industries through automation, predictive analytics, and ethical innovation. Discover where AI is heading in 2025.",
     category: "Technology",
     featured_image:
-      "https://images.unsplash.com/photo-1581091215367-59ab6d60b6c1?auto=format&fit=crop&w=1200&q=80",
+      "https://cdn.britannica.com/47/246247-050-F1021DE9/AI-text-to-image-photo-robot-with-computer.jpg",
     main_content: `
       <h1>The Rise of AI</h1>
       <p>Artificial Intelligence has become a part of daily life, from smart homes to automated healthcare systems.</p>
@@ -184,8 +188,10 @@ export const blogs = [
       },
     ],
     tags: ["AI", "Technology", "Future"],
+    views: 10
   },
   {
+    views: 8,
     id: "b002",
     user_id: "u001",
     title: "MERN Stack Development: Complete Beginner’s Guide 2025",
@@ -237,6 +243,7 @@ export const blogs = [
     tags: ["MERN", "Web Development", "JavaScript"],
   },
   {
+    views: 20,
     id: "b003",
     user_id: "u001",
     title: "Next.js SEO Optimization: Boost Your Website Ranking",
@@ -288,6 +295,7 @@ export const blogs = [
     tags: ["Next.js", "SEO", "Optimization"],
   },
   {
+    views: 250,
     id: "b004",
     user_id: "u001",
     title: "Building a Personal Portfolio Using React in 2025",

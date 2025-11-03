@@ -29,14 +29,14 @@ export const SearchBanner = () => {
           The latest insights on Web Development, AI, and Next-Gen Technology — powered by Kraviona.
         </p>
 
-    {/* search form */}
-    <form className="w-[80%] mx-auto flex    h-[60px] rounded-full bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden shadow-lg hover:shadow-emerald-400/30 transition-all duration-300">
-<input type="text" className=" md:w-11/12 w-full h-full px-4 outline-0  "  placeholder="Search articles... (e.g. AI, React, Next.js)" autoFocus={true}/>
+        {/* search form */}
+        <form className="w-[80%] mx-auto flex    h-[60px] rounded-full bg-white/10 backdrop-blur-md border border-white/20 overflow-hidden shadow-lg hover:shadow-emerald-400/30 transition-all duration-300">
+          <input type="text" className=" md:w-11/12 w-full h-full px-4 outline-0  " placeholder="Search articles... (e.g. AI, React, Next.js)" autoFocus={true} />
 
-<button className="md:w-1/12 h-full hidden md:block ">
-    <Search/>
-</button>
-    </form>
+          <button className="md:w-1/12 h-full hidden md:block ">
+            <Search />
+          </button>
+        </form>
 
         <p className="mt-6 text-gray-400 text-sm">
           🔍 Try keywords like{" "}
