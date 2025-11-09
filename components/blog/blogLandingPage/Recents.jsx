@@ -21,7 +21,7 @@ const RecentBlogs = () => {
                     </h2>
                     <Link
                         href="/blogs"
-                        className="flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-blue-300 transition-all"
+                        className="flex hover:scale-110 items-center gap-2 text-sm font-medium text-emerald-400 hover:text-blue-300 transition-all"
                     >
                         View All <ArrowRight className="w-4 h-4" />
                     </Link>
